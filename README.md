@@ -31,3 +31,7 @@ Concepts :
 ### Modalités pédagogiques
 
 > Travail individuel Deadline: 06/01/2023
+
+### Critères de performance
+
+> Utilisation d'un outil de gestion de projets (trello, jira ....) Pratiquer tous les concepts au niveau de conception de l’application Une bonne qualité du code et structure du projet L'interface répond à la demande d'expression de besoin (fonctionnelle et adaptative)
