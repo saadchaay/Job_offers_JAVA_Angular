@@ -1,0 +1,27 @@
+<div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12 w-1/2 mx-auto mt-10">
+  <h3 class="mb-6 text-xl font-semibold sm:text-center sm:mb-8 sm:text-2xl">
+    Login
+  </h3>
+  <app-loader *ngIf="loader"></app-loader>
+  <form *ngIf="!loader" #addCompanyForm="ngForm" (ngSubmit)="login(addCompanyForm)" class="space-y-3 mt-4">
+    <div>
+      <label class="sr-only" for="login"> Username | Login </label>
+      <input ngModel name="login" class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Username | Login" type="text" id="login"/>
+    </div>
+
+    <div>
+      <label class="sr-only" for="password">Password</label>
+      <input ngModel name="password" class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Password" type="password" id="password"/>
+    </div>
+
+    <div class="mt-4 flex justify-end">
+      <button type="submit" class="inline-flex w-full items-center justify-center rounded-lg bg-indigo-600 px-5 py-3 text-white sm:w-auto hover:bg-indigo-700">
+        <span class="font-medium"> Submit </span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </button>
+    </div>
+  </form>
+
+</div>
