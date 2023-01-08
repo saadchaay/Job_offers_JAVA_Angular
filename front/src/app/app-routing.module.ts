@@ -5,10 +5,11 @@ import {RegisterComponent} from "./core/pages/register/register.component";
 import {LoginComponent} from "./core/pages/login/login.component";
 import {CompaniesComponent} from "./core/pages/companies/companies.component";
 import {ProfileComponent} from "./core/pages/profile/profile.component";
+import {OffersComponent} from "./core/pages/offers/offers.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'offers', component: HomeComponent },
+  { path: 'offers', component: OffersComponent },
   { path: 'companies', component: CompaniesComponent },
   { path: 'sign-up', component: RegisterComponent },
   { path: 'sign-in', component: LoginComponent },

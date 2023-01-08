@@ -20,6 +20,9 @@ import { LoaderComponent } from './core/components/loader/loader.component';
 import { PostComponent } from './core/components/post/post.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { OfferFormComponent } from './core/components/offer-form/offer-form.component';
+import { OffersComponent } from './core/pages/offers/offers.component';
+import { OfferDetailsComponent } from './core/components/offer-details/offer-details.component';
+import { CompanyCardComponent } from './core/components/company-card/company-card.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { OfferFormComponent } from './core/components/offer-form/offer-form.comp
     LoaderComponent,
     PostComponent,
     FooterComponent,
-    OfferFormComponent
+    OfferFormComponent,
+    OffersComponent,
+    OfferDetailsComponent,
+    CompanyCardComponent
   ],
   imports: [
     BrowserModule,

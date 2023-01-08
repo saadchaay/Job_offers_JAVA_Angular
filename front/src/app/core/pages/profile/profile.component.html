@@ -47,18 +47,18 @@
             </div>
             <div class="text-center mt-8">
               <h3 class="text-3xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                Jenna Stones
+                {{auth.company.name}}
               </h3>
               <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                 <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-                Los Angeles, California
+                {{auth.company.address}}
               </div>
             </div>
             <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
               <app-loader *ngIf="loader"></app-loader>
               <div class="flex flex-wrap justify-center" *ngIf="!loader">
-                <div class="w-full lg:w-9/12 px-4">
-                  <app-post *ngFor="let one of allOffers" [canDelete]="canDelete" [offer]="one"></app-post>
+                <div class="overflow-y-scroll h-screen w-full lg:w-9/12 px-4">
+                  <app-post *ngFor="let one of allOffers" [canDelete]="true" [offer]="one"></app-post>
                 </div>
               </div>
             </div>

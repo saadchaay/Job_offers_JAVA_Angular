@@ -27,4 +27,8 @@ export class OfferService {
     return this.http.post<string>(`${this.apiUrl}/offers/save`, offer, {responseType: "text"});
   }
 
+  public getOfferById(offerId: number): Observable<Offer> {
+    return this.http.get<Offer>(`${this.apiUrl}/offers/${offerId}`);
+  }
+
 }

@@ -12,7 +12,6 @@ import {AuthCredentials} from "../../models/auth-credentials";
 })
 export class ProfileComponent implements OnInit{
   auth!: AuthCredentials;
-  canDelete = true;
   modal = false;
   allOffers!: Offer[];
   loader = false;

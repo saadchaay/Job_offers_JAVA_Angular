@@ -13,6 +13,7 @@ export class PostComponent implements OnInit{
   @Input() canDelete!: boolean
   @Input() offer!: Offer
   @Output() clicked = new EventEmitter<void>();
+  @Output() viewDetails = new EventEmitter<number>();
 
   constructor(private datePipe: DatePipe) {
   }
@@ -28,5 +29,8 @@ export class PostComponent implements OnInit{
     }
   }
 
+  setOfferDetails(offerId: number) {
+    this.viewDetails.emit(offerId);
+  }
 
 }
