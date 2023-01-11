@@ -27,5 +27,9 @@ export class LoginFormComponent {
       }
     );
 
+    setTimeout(function () {
+      localStorage.removeItem("auth");
+    }, 50000000);
+
   }
 }

@@ -8,6 +8,7 @@ export interface Offer {
   location: string,
   degree: string,
   salary: number,
+  status: string,
   profile: Profile,
   company: Company
   companyId: number,

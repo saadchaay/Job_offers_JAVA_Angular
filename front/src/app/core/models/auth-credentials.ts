@@ -1,10 +1,11 @@
 import {Company} from "./company";
+import {Agent} from "./agent";
 
 export interface AuthCredentials {
   login: String,
   password: String,
-  token: String,
+  token: string,
   company: Company,
-  agent: object,
+  agent: Agent,
   role: String
 }

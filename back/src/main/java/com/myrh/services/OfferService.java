@@ -21,6 +21,10 @@ public class OfferService {
     }
 
     public List<Offer> listAll(){
+        return offerRepository.findAll();
+    }
+
+    public List<Offer> listAllAcceptedOffers(){
         return offerRepository.findAll()
                 .stream()
                 .filter(offer -> Objects.equals(offer.getStatus(), Enum.status.Accepted.toString()))
@@ -29,7 +33,9 @@ public class OfferService {
 
     public Offer getOfferById(Long id){
         Optional offer = offerRepository.findById(id);
-        return offer.isPresent() ? (Offer) offer.get() : null;
+        if(offer.isPresent())
+            return ((Offer) offer.get()).getStatus().equals(Enum.status.Accepted.toString()) ? (Offer) offer.get() : null;
+        return null;
     }
 
     public Offer save(Offer offer){

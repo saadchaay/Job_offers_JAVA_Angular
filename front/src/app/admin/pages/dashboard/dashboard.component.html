@@ -1,0 +1,17 @@
+<section class="bg-white">
+  <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+        Agent Dashboard
+      </h2>
+    </div>
+
+    <div class="mt-8 sm:mt-12">
+      <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <app-card [title]="'Total Offers'" [value]="countOffers[0]"></app-card>
+        <app-card [title]="'Pending offers'" [value]="countOffers[1]" [styleClr]="'text-orange-500'"></app-card>
+        <app-card [title]="'Offers Accepted'" [value]="countOffers[2]" [styleClr]="'text-green-600'"></app-card>
+      </dl>
+    </div>
+  </div>
+</section>
