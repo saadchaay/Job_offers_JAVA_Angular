@@ -43,7 +43,7 @@ export class OfferService {
   public acceptOffer(token: string, offerId: number): Observable<String>{
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     // @ts-ignore
-    return this.http.put<String>(`${this.apiUrl}/accept-offer/${offerId}`, {headers, responseType: "text"});
+    return this.http.put<String>(`${this.apiUrl}/accept-offer/${offerId}`,{},{headers, responseType: "text"});
   }
 
   public deleteOffer(token: string, offerId: number): Observable<String> {

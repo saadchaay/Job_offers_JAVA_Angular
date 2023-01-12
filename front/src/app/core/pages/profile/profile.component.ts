@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Offer} from "../../models/offer";
 import {AuthCredentials} from "../../models/auth-credentials";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -51,6 +52,7 @@ export class ProfileComponent implements OnInit{
   }
 
   removeOffer(offerId: number){
+    console.log(offerId)
     this.offerService.deleteOffer(this.auth.token, offerId).subscribe(
       (res: String) => {
         this.ngOnInit();
