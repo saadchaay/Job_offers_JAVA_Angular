@@ -57,7 +57,7 @@ export class RegisterFormComponent implements OnInit{
         (res: any) => {
           console.log(res);
           this.loader = false;
-          this.router.navigate(['sign-in'])
+          this.router.navigate(['sign-in']).then();
         },
         (error: HttpErrorResponse) => {
           this.loader = false;

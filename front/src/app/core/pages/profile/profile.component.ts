@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit{
   ngOnInit(): void {
     this.loader = true;
     if(localStorage.getItem("auth") == null){
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['sign-in']).then();
     }else{
       // @ts-ignore
       this.auth = JSON.parse(localStorage.getItem("auth"));
@@ -46,6 +46,16 @@ export class ProfileComponent implements OnInit{
         this.allOffers = res;
       }, (error: HttpErrorResponse) => {
         console.log(error.message)
+      }
+    )
+  }
+
+  removeOffer(offerId: number){
+    this.offerService.deleteOffer(this.auth.token, offerId).subscribe(
+      (res: String) => {
+        this.ngOnInit();
+      }, (error: HttpErrorResponse) => {
+        console.log(error.message);
       }
     )
   }

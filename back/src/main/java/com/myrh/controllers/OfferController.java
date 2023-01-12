@@ -3,6 +3,7 @@ package com.myrh.controllers;
 import com.myrh.dto.OfferRequest;
 import com.myrh.models.Offer;
 import com.myrh.services.OfferService;
+import com.myrh.utils.Enum;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,11 +28,11 @@ public class OfferController {
 
     @GetMapping("offers/{id}")
     public ResponseEntity<Object> showOffer(@PathVariable String id){
-        return ResponseEntity.ok(offerService.getOfferById(Long.valueOf(id)));
+        return ResponseEntity.ok(offerService.getAcceptedOfferById(Long.valueOf(id)));
     }
 
-    @PostMapping("offers-save")
-    public ResponseEntity<Object> saveOffer(
+    @PostMapping("offer-save")
+    public ResponseEntity<String> saveOffer(
             @RequestBody OfferRequest req
     ){
         Offer offer = new Offer(req.getTitle(),
@@ -47,5 +48,18 @@ public class OfferController {
         return ResponseEntity.ok(offerService.getOffersByCompany(Long.valueOf(id)));
     }
 
+    @PutMapping("accept-offer/{id}")
+    public ResponseEntity<String> acceptOffer(@PathVariable String id){
+        if(offerService.updateOfferStatus(Long.valueOf(id), Enum.status.Accepted.toString()))
+            return ResponseEntity.ok("Accept this offer has been successfully.");
+        return ResponseEntity.status(400).body("Failed acceptation, try again!");
+    }
+
+    @DeleteMapping("delete-offer/{id}")
+    public ResponseEntity<String> deleteOffer(@PathVariable String id){
+        if(offerService.deleteOffer(Long.valueOf(id)))
+            return ResponseEntity.ok("Delete this offer has been successfully.");
+        return ResponseEntity.status(400).body("Failed acceptation, try again!");
+    }
 
 }

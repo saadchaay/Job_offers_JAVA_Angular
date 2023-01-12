@@ -21,7 +21,7 @@ export class LoginFormComponent {
       (res: any) => {
         console.log(res);
         localStorage.setItem("auth", JSON.stringify(res));
-        this.router.navigate(['profile'])
+        this.router.navigate(['profile']).then();
       }, (error) => {
         console.log(error.message());
       }

@@ -5,7 +5,7 @@
   <div *ngIf="modal" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
     <div class="fixed inset-0 z-10 overflow-y-auto mt-24">
-        <app-offer-form (closeClicked)="closeModal()" (submitOffer)="fetchOfferByCompany()" [companyId]="auth.company.id"></app-offer-form>
+        <app-offer-form (closeClicked)="closeModal()" (submitOffer)="fetchOfferByCompany()" [auth]="auth"></app-offer-form>
     </div>
   </div>
 
@@ -58,7 +58,7 @@
               <app-loader *ngIf="loader"></app-loader>
               <div class="flex flex-wrap justify-center" *ngIf="!loader">
                 <div class="overflow-y-scroll h-screen w-full lg:w-9/12 px-4">
-                  <app-post *ngFor="let one of allOffers" [canDelete]="true" [offer]="one"></app-post>
+                  <app-post *ngFor="let one of allOffers" [canDelete]="true" [offer]="one" [auth]="auth" (deleteOffer)="removeOffer($event)"></app-post>
                 </div>
               </div>
             </div>

@@ -16,7 +16,6 @@ export class OfferService {
 
   public getAllOffers(token: string): Observable<Offer[]> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    console.log(headers);
     return this.http.get<Offer[]>(`${this.apiUrl}/offers-all`, {headers});
   }
 
@@ -29,14 +28,28 @@ export class OfferService {
   }
 
   // add token here ......
-  public addJobOffer(offer: Offer, companyId: number): Observable<string> {
+  public addJobOffer(offer: Offer, companyId: number, token: string): Observable<String> {
     offer.companyId = companyId;
+    // console.log(token);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     // @ts-ignore
-    return this.http.post<string>(`${this.apiUrl}/offers-save`, offer, {responseType: "text"});
+    return this.http.post<String>(`${this.apiUrl}/offer-save`, offer, {headers, responseType: "text"});
   }
 
   public getOfferById(offerId: number): Observable<Offer> {
     return this.http.get<Offer>(`${this.apiUrl}/offers/${offerId}`);
+  }
+
+  public acceptOffer(token: string, offerId: number): Observable<String>{
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    // @ts-ignore
+    return this.http.put<String>(`${this.apiUrl}/accept-offer/${offerId}`, {headers, responseType: "text"});
+  }
+
+  public deleteOffer(token: string, offerId: number): Observable<String> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    // @ts-ignore
+    return this.http.delete<String>(`${this.apiUrl}/delete-offer/${offerId}`, {headers, responseType: "text"});
   }
 
 }

@@ -11,14 +11,13 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 
 @SpringBootApplication
-@Configuration
 public class BackApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BackApplication.class, args);
     }
 
-    @Bean
+//    @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();

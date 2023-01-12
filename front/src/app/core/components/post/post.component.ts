@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Offer} from "../../models/offer";
 import {DatePipe} from "@angular/common";
+import {OfferService} from "../../services/offer.service";
+import {AuthCredentials} from "../../models/auth-credentials";
 
 @Component({
   selector: 'app-post',
@@ -8,29 +10,21 @@ import {DatePipe} from "@angular/common";
   styleUrls: ['./post.component.css'],
   providers: [DatePipe]
 })
-export class PostComponent implements OnInit{
-  auth!: object
+export class PostComponent{
+  @Input() auth!: AuthCredentials
   @Input() canDelete!: boolean
   @Input() offer!: Offer
-  @Output() clicked = new EventEmitter<void>();
   @Output() viewDetails = new EventEmitter<number>();
+  @Output() deleteOffer = new EventEmitter<number>();
 
-  constructor(private datePipe: DatePipe) {
-  }
-
-  onClickTest(){
-    this.clicked.emit();
-  }
-
-  ngOnInit(): void {
-    if(localStorage.getItem("auth")){
-      // @ts-ignore
-      this.auth = JSON.parse(localStorage.getItem("auth"));
-    }
-  }
+  constructor(private datePipe: DatePipe) {}
 
   setOfferDetails(offerId: number) {
     this.viewDetails.emit(offerId);
+  }
+
+  removeOffer(offerId: number){
+    this.deleteOffer.emit(offerId);
   }
 
 }

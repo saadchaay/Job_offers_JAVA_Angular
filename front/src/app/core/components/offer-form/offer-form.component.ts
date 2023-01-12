@@ -5,6 +5,7 @@ import {Profile} from "../../models/profile";
 import {ProfileService} from "../../services/profile.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {OfferService} from "../../services/offer.service";
+import {AuthCredentials} from "../../models/auth-credentials";
 
 @Component({
   selector: 'app-offer-form',
@@ -15,7 +16,7 @@ export class OfferFormComponent implements OnInit{
   model = false;
   loader = false;
   profiles!: Profile[]
-  @Input() companyId!: number
+  @Input() auth!: AuthCredentials;
   @Output() closeClicked = new EventEmitter<void>();
   @Output() submitOffer = new EventEmitter<void>();
 
@@ -45,10 +46,10 @@ export class OfferFormComponent implements OnInit{
   }
 
   addJobOffer(jobOffer: NgForm){
-    console.log(this.companyId)
+    console.log(this.auth.company.id)
     console.log(jobOffer.value)
-    this.offerService.addJobOffer(jobOffer.value, this.companyId).subscribe(
-      (res: string) => {
+    this.offerService.addJobOffer(jobOffer.value, this.auth.company.id, this.auth.token).subscribe(
+      (res: String) => {
         console.log(res)
         jobOffer.reset()
         this.submitOffer.emit()
