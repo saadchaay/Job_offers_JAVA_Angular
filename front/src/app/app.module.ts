@@ -23,6 +23,9 @@ import { OfferFormComponent } from './core/components/offer-form/offer-form.comp
 import { OffersComponent } from './core/pages/offers/offers.component';
 import { OfferDetailsComponent } from './core/components/offer-details/offer-details.component';
 import { CompanyCardComponent } from './core/components/company-card/company-card.component';
+import { AuthComponent } from './admin/pages/auth/auth.component';
+import { DashboardComponent } from './admin/pages/dashboard/dashboard.component';
+import { CardComponent } from './admin/components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { CompanyCardComponent } from './core/components/company-card/company-car
     OfferFormComponent,
     OffersComponent,
     OfferDetailsComponent,
-    CompanyCardComponent
+    CompanyCardComponent,
+    AuthComponent,
+    DashboardComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import com.myrh.utils.Enum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -20,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -29,23 +31,27 @@ public class SecurityConfig {
     private final JWTAuthFilter jwtAuthFilter;
     private final AgentService agentService;
     private final CompanyService companyService;
+    private final CorsConfig corsConfig;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**", "/register", "/code-verification", "/resend-code", "/company/**", "/offers/**", "/profiles/**")
+                .requestMatchers("/auth/**", "/register", "/code-verification", "/resend-code", "/company/**", "/profiles/**", "/offers/**")
                 .permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeHttpRequests()
-                    .requestMatchers("/agent/**").hasAnyAuthority(Enum.role.AGENT.toString())
+                    .requestMatchers("/agent/**", "/offers-all", "/accept-offer/{id}").hasAnyAuthority(Enum.role.AGENT.toString())
                     .and()
                     .authorizeHttpRequests()
-                    .requestMatchers("/offers/save").hasAnyAuthority(Enum.role.COMPANY.toString())
+                    .requestMatchers("/offer-save").hasAnyAuthority(Enum.role.COMPANY.toString())
+                    .and()
+                    .authorizeHttpRequests()
+                    .requestMatchers("/delete-offer/{id}").hasAnyAuthority(Enum.role.AGENT.toString(), Enum.role.COMPANY.toString())
                     .anyRequest()
                     .authenticated()
                     .and()

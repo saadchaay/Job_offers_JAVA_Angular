@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit{
 
   ngOnInit(): void {
     if(localStorage.getItem("auth") != null){
-      this.router.navigate(["/profile"])
+      this.router.navigate(["/profile"]).then();
     }
   }
 }

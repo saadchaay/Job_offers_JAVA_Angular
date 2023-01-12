@@ -20,7 +20,7 @@ export class OffersComponent implements OnInit{
   }
 
   fetchAllOffers() {
-    this.offerService.getAllOffers().subscribe(
+    this.offerService.getAcceptedOffers().subscribe(
       (res: Offer[]) => {
         this.offers = res;
         this.viewOffer = res[0];
