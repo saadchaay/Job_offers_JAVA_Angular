@@ -15,11 +15,10 @@ export class LoginFormComponent {
 
   login(credentials: NgForm){
     this.loader = true;
-    console.log(credentials.value);
 
     this.authService.companyAuth(credentials.value).subscribe(
       (res: any) => {
-        console.log(res);
+        localStorage.clear();
         localStorage.setItem("auth", JSON.stringify(res));
         this.router.navigate(['profile']).then();
       }, (error) => {
@@ -29,7 +28,7 @@ export class LoginFormComponent {
 
     setTimeout(function () {
       localStorage.removeItem("auth");
-    }, 50000000);
+    }, 5000000);
 
   }
 }

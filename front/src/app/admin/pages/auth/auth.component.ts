@@ -33,6 +33,11 @@ export class AuthComponent implements OnInit{
       }, (err: HttpErrorResponse) => {
         console.log(err.message);
       }
-    )
+    );
+
+    setTimeout(function () {
+      localStorage.removeItem("auth");
+    }, 5000000);
   }
+
 }

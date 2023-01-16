@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {Offer} from "../../models/offer";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {OfferService} from "../../services/offer.service";
@@ -11,6 +11,7 @@ import {OfferService} from "../../services/offer.service";
 export class OffersComponent implements OnInit{
   loader = false;
   offers!: Offer[];
+  offersFiltered!: Offer[];
   viewOffer!: Offer;
 
   constructor(private offerService: OfferService) {}
@@ -40,5 +41,29 @@ export class OffersComponent implements OnInit{
         console.log(error.message);
       }
     )
+  }
+
+  filterOfferData(offerSearch: object){
+    // this.ngOnInit();
+    let offersFiltered = this.offers;
+    // @ts-ignore
+    let profile = offerSearch.profile;
+    // @ts-ignore
+    let location = offerSearch.location;
+    // @ts-ignore
+    let title = offerSearch.title;
+    if(title != undefined){
+      offersFiltered = offersFiltered.filter(item => (item.title).toLowerCase().includes(title.toLowerCase()));
+      // this.offers = offersFiltered;
+    }
+    if(profile != undefined){
+      offersFiltered = offersFiltered.filter(item => (item.profileId == profile));
+      // this.offers = offersFiltered;
+    }
+    if(location != undefined){
+      offersFiltered = offersFiltered.filter(item => (item.location).toLowerCase().includes(location.toLowerCase()));
+      // this.offers = offersFiltered;
+    }
+    this.offersFiltered = offersFiltered;
   }
 }

@@ -33,8 +33,8 @@ public class CompanyController {
                 req.getEmail(), req.getPhone(), req.getAddress(), req.getImageUrl());
         codeVer = RandomCode.generate();
         System.out.println(codeVer);
-//        sendMail.sendVerificationCode(company.getEmail(), "Code register verification.",
-//                "Code verification is: "+codeVer+".");
+        sendMail.sendVerificationCode(company.getEmail(), "Code register verification.",
+                "Code verification is: "+codeVer+".");
         setTime = LocalTime.now();
         return ResponseEntity.ok(company);
     }

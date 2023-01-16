@@ -26,6 +26,7 @@ import { CompanyCardComponent } from './core/components/company-card/company-car
 import { AuthComponent } from './admin/pages/auth/auth.component';
 import { DashboardComponent } from './admin/pages/dashboard/dashboard.component';
 import { CardComponent } from './admin/components/card/card.component';
+import { FilterComponent } from './core/components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { CardComponent } from './admin/components/card/card.component';
     CompanyCardComponent,
     AuthComponent,
     DashboardComponent,
-    CardComponent
+    CardComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

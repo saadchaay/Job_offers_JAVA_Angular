@@ -52,4 +52,11 @@ export class OfferService {
     return this.http.delete<String>(`${this.apiUrl}/delete-offer/${offerId}`, {headers, responseType: "text"});
   }
 
+  // // search offer ...
+  // public searchOffers(profile: number, location: string, title: string): Observable<Offer[]>{
+  //   if(profile != undefined && location != undefined && title != undefined)
+  //     return this.http.get<Offer[]>(`${this.apiUrl}/offers/search?title=${title}&profile=${profile}&location=${location}`);
+  //   return
+  // }
+
 }

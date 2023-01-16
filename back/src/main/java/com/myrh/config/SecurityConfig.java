@@ -31,7 +31,6 @@ public class SecurityConfig {
     private final JWTAuthFilter jwtAuthFilter;
     private final AgentService agentService;
     private final CompanyService companyService;
-    private final CorsConfig corsConfig;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

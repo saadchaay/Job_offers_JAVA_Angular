@@ -1,7 +1,7 @@
 <div class="min-h-full container-bg">
   <app-header></app-header>
-  <main class="mt-16 pb-8 h-screen">
-    <div *ngIf="offers.length == 0" class="flex justify-center w-full">
+  <main class="mt-16 pb-8">
+    <div *ngIf="offers && offers.length == 0" class="flex justify-center w-full">
       <div class="rounded-md bg-blue-50 p-4 w-1/2">
         <div class="flex">
           <div class="flex-shrink-0">
@@ -16,16 +16,20 @@
       </div>
     </div>
     <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+      <app-filter (filterClick)="filterOfferData($event)"></app-filter>
       <h1 class="sr-only">Page title</h1>
       <!-- Main 3 column grid -->
-      <div *ngIf="offers && offers.length > 0" class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
+      <div *ngIf="offers && offers.length > 0" class="mt-5 grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
         <!-- All offers -->
         <div class="grid grid-cols-1 gap-4 lg:col-span-2">
           <section aria-labelledby="section-1-title">
             <h2 class="sr-only" id="section-1-title">Section title</h2>
             <div class="overflow-y-scroll h-screen rounded-lg bg-white shadow">
-              <div *ngIf="!loader" class="p-6">
+              <div *ngIf="!loader && !offersFiltered" class="p-6">
                 <app-post *ngFor="let one of offers" [canDelete]="false" [offer]="one" (viewDetails)="viewOfferDetails($event)"></app-post>
+              </div>
+              <div *ngIf="offersFiltered">
+                <app-post *ngFor="let one of offersFiltered" [canDelete]="false" [offer]="one" (viewDetails)="viewOfferDetails($event)"></app-post>
               </div>
               <div *ngIf="loader" class="p-6">
                   <app-loader></app-loader>

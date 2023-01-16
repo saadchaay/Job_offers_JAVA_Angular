@@ -26,6 +26,26 @@ public class OfferService {
         return offerRepository.findAll();
     }
 
+    public List<Offer> offerBySearch(String title, Long profile, String location){
+        List<Offer> offers = listAllAcceptedOffers();
+        if(title != null){
+            offers = offers.stream()
+                    .filter(o -> o.getTitle().equals(title))
+                    .collect(Collectors.toList());
+        }
+        if(profile != null){
+            offers = offers.stream()
+                    .filter(o -> o.getProfileId().equals(profile))
+                    .collect(Collectors.toList());
+        }
+        if(location != null){
+            offers = offers.stream()
+                    .filter(o -> o.getLocation().equals(location))
+                    .collect(Collectors.toList());
+        }
+        return offers;
+    }
+
     public Offer getOfferById(Long id){
         Optional<Offer> offer = offerRepository.findById(id);
         return offer.orElse(null);

@@ -7,6 +7,8 @@ import com.myrh.utils.Enum;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class OfferController {
 
@@ -29,6 +31,14 @@ public class OfferController {
     @GetMapping("offers/{id}")
     public ResponseEntity<Object> showOffer(@PathVariable String id){
         return ResponseEntity.ok(offerService.getAcceptedOfferById(Long.valueOf(id)));
+    }
+
+    @GetMapping("offers/search")
+    public ResponseEntity<Object> searchOffers(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) Long profile,
+            @RequestParam(required = false) String location){
+        return ResponseEntity.ok(offerService.offerBySearch(title, profile, location));
     }
 
     @PostMapping("offer-save")
